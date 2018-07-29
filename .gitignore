@@ -17,6 +17,13 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
+
+# testing
+/coverage
+
+# production
+/build
+
 # nyc test coverage
 .nyc_output
 
@@ -55,6 +62,11 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 .env
 
 # next.js build output
