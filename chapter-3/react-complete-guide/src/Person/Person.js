@@ -3,10 +3,10 @@ import React from "react";
 const person = props => {
   return (
     <div>
-      <p>
+      {/* here, passed a click handler method that can change the state by being passed with props */}
+      <p onClick={props.click}>
         I'm {props.name} and I am {props.age} years old
       </p>
-      <p>{props.children}</p>
     </div>
   );
 };
