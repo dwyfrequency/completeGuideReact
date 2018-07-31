@@ -28,7 +28,6 @@ class App extends Component {
   };
 
   nameChangedHandler = e => {
-    // we are taking the value typed into the input for the name
     console.log(e.target.value);
     this.setState({
       persons: [

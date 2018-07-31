@@ -1,0 +1,9 @@
+/* anything within this css is not directly bound to the person component, this is global */
+.Person {
+  width: 60%;
+  margin: 16px auto; /* add a little margin and center it */
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 16px;
+  text-align: center;
+}
