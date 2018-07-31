@@ -25,7 +25,18 @@ class App extends Component {
     this.setState({
       persons: [{ name: newName, age: 42 }, { name: "Hann" }, { name: "Diddy" }]
     });
-    console.log(this.state);
+  };
+
+  nameChangedHandler = e => {
+    // we are taking the value typed into the input for the name
+    console.log(e.target.value);
+    this.setState({
+      persons: [
+        { name: "Maxy", age: 42 },
+        { name: "Diddy" },
+        { name: e.target.value }
+      ]
+    });
   };
 
   render() {
@@ -48,6 +59,7 @@ class App extends Component {
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
           click={this.switchNameHandler.bind(this, "Jack-Attack")}
+          changed={this.nameChangedHandler}
         >
           My Hobbies: Racing
         </Person>
