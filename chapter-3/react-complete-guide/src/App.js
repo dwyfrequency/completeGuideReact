@@ -39,11 +39,24 @@ class App extends Component {
   };
 
   render() {
+    // inline styles - good for scoping styles to a single element instead of the entire file, but like why not use just an id
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      boxShadow: "0 2px 2px grey",
+      padding: "8px",
+      cursor: "pointer"
+    };
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler("Sweet-Feet")}>
+        <button
+          style={style}
+          onClick={() => this.switchNameHandler("Sweet-Feet")}
+        >
           Switch Name
         </button>
         <Person
