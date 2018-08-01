@@ -14,7 +14,7 @@ class App extends Component {
         age: 40
       },
       {
-        name: "steph",
+        name: "Steph",
         age: 21
       }
     ],
@@ -58,24 +58,13 @@ class App extends Component {
 
     let persons = null;
     if (this.state.showPersons) {
+      // we are assigning jsx to persons, we wrap map in curlys b/c we are using js and we return an array of jsx
       persons = (
         <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-          />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-          />
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-            click={this.switchNameHandler.bind(this, "Jack-Attack")}
-            changed={this.nameChangedHandler}
-          >
-            My Hobbies: Racing
-          </Person>
+          {/* if the elements in the array are valid jsx, react will print them to the dom */}
+          {this.state.persons.map(person => {
+            return <Person name={person.name} age={person.age} />;
+          })}
         </div>
       );
     }
