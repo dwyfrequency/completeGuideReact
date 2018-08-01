@@ -39,12 +39,10 @@ class App extends Component {
   };
 
   /* if we use syntax togglePersonHandler() {}, we;ll have issues with the this keyword*/
-
   togglePersonHandler = () => {
     // if not, showing divs show them, if already showing - hide them
-    // state is then updated and the dom is rerendered on state change
+    // state is then updated and the dom is re-rendered on state change
     this.setState({ showPersons: !this.state.showPersons });
-    console.log(this.state);
   };
 
   render() {
@@ -58,33 +56,39 @@ class App extends Component {
       cursor: "pointer"
     };
 
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          />
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+            click={this.switchNameHandler.bind(this, "Jack-Attack")}
+            changed={this.nameChangedHandler}
+          >
+            My Hobbies: Racing
+          </Person>
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
         <button style={style} onClick={this.togglePersonHandler}>
-          Switch Name
+          Toggle Persons
         </button>
-        {this.state.showPersons ? (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-            />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-            />
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-              click={this.switchNameHandler.bind(this, "Jack-Attack")}
-              changed={this.nameChangedHandler}
-            >
-              My Hobbies: Racing
-            </Person>
-          </div>
-        ) : null}
+        {/* if null, no display; if populated, tiles will show */}
+        {persons}
       </div>
     );
   }
