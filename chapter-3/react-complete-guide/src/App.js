@@ -29,7 +29,6 @@ class App extends Component {
   };
 
   nameChangedHandler = e => {
-    console.log(e.target.value);
     this.setState({
       persons: [
         { name: "Maxy", age: 42 },
@@ -42,6 +41,8 @@ class App extends Component {
   /* if we use syntax togglePersonHandler() {}, we;ll have issues with the this keyword*/
 
   togglePersonHandler = () => {
+    // if not, showing divs show them, if already showing - hide them
+    // state is then updated and the dom is rerendered on state change
     this.setState({ showPersons: !this.state.showPersons });
     console.log(this.state);
   };
