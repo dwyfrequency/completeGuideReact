@@ -18,7 +18,8 @@ class App extends Component {
         age: 21
       }
     ],
-    otherState: "some other val"
+    otherState: "some other val",
+    showPersons: false
   };
 
   switchNameHandler = newName => {
@@ -38,6 +39,13 @@ class App extends Component {
     });
   };
 
+  /* if we use syntax togglePersonHandler() {}, we;ll have issues with the this keyword*/
+
+  togglePersonHandler = () => {
+    this.setState({ showPersons: !this.state.showPersons });
+    console.log(this.state);
+  };
+
   render() {
     // inline styles - good for scoping styles to a single element instead of the entire file, but like why not use just an id
     const style = {
@@ -53,28 +61,29 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button
-          style={style}
-          onClick={() => this.switchNameHandler("Sweet-Feet")}
-        >
+        <button style={style} onClick={this.togglePersonHandler}>
           Switch Name
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-        />
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-          click={this.switchNameHandler.bind(this, "Jack-Attack")}
-          changed={this.nameChangedHandler}
-        >
-          My Hobbies: Racing
-        </Person>
+        {this.state.showPersons ? (
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+            />
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+              click={this.switchNameHandler.bind(this, "Jack-Attack")}
+              changed={this.nameChangedHandler}
+            >
+              My Hobbies: Racing
+            </Person>
+          </div>
+        ) : null}
       </div>
     );
   }
