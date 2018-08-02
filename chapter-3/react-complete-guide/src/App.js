@@ -41,12 +41,10 @@ class App extends Component {
     });
   };
 
-  deletePersonHandler = index => {
-    // can also use slice
-    // we spread out array and rewrap in array
-    const persons = [...this.state.persons];
-    // removes the person with that index
-    persons.splice(index, 1);
+  deletePersonHandler = id => {
+    // filter out user with id passed in
+    const persons = this.state.persons.filter(p => p.id !== id);
+
     this.setState({ persons: persons });
   };
 
@@ -68,11 +66,11 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
+          {this.state.persons.map(person => {
             return (
               <Person
                 // can also do this click={() => this.deletePersonHandler.(index)}; returns a function to be used in the callback
-                click={this.deletePersonHandler.bind(this, index)}
+                click={this.deletePersonHandler.bind(this, person.id)}
                 name={person.name}
                 age={person.age}
                 // key prop is an import prop, that is default for react; helps react update the virtual dom.
