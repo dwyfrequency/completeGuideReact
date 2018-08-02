@@ -22,12 +22,6 @@ class App extends Component {
     showPersons: false
   };
 
-  switchNameHandler = newName => {
-    this.setState({
-      persons: [{ name: newName, age: 42 }, { name: "Hann" }, { name: "Diddy" }]
-    });
-  };
-
   nameChangedHandler = e => {
     this.setState({
       persons: [
@@ -38,15 +32,18 @@ class App extends Component {
     });
   };
 
-  /* if we use syntax togglePersonHandler() {}, we;ll have issues with the this keyword*/
+  deletePersonHandler = index => {
+    const persons = this.state.persons;
+    // removes the person with that index
+    persons.splice(index, 1);
+    this.setState({ persons: persons });
+  };
+
   togglePersonHandler = () => {
-    // if not, showing divs show them, if already showing - hide them
-    // state is then updated and the dom is re-rendered on state change
     this.setState({ showPersons: !this.state.showPersons });
   };
 
   render() {
-    // inline styles - good for scoping styles to a single element instead of the entire file, but like why not use just an id
     const style = {
       backgroundColor: "white",
       font: "inherit",
@@ -58,12 +55,16 @@ class App extends Component {
 
     let persons = null;
     if (this.state.showPersons) {
-      // we are assigning jsx to persons, we wrap map in curlys b/c we are using js and we return an array of jsx
       persons = (
         <div>
-          {/* if the elements in the array are valid jsx, react will print them to the dom */}
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />;
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={this.deletePersonHandler.bind(this, index)}
+                name={person.name}
+                age={person.age}
+              />
+            );
           })}
         </div>
       );
@@ -76,7 +77,6 @@ class App extends Component {
         <button style={style} onClick={this.togglePersonHandler}>
           Toggle Persons
         </button>
-        {/* if null, no display; if populated, tiles will show */}
         {persons}
       </div>
     );
