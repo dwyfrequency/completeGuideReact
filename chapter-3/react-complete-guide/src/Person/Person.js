@@ -1,5 +1,6 @@
 import React from "react";
 import "./Person.css"; // webpack will bundle this for us. note, we need the extension b/c you can only ommit for js files
+import Radium from "radium";
 
 const person = props => {
   return (
@@ -13,4 +14,4 @@ const person = props => {
   );
 };
 
-export default person;
+export default Radium(person);
