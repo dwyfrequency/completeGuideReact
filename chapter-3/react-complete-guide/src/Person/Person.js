@@ -1,9 +1,9 @@
 import React from "react";
-import "./Person.css"; // webpack will bundle this for us. note, we need the extension b/c you can only ommit for js files
+import classes from "./Person.css"; // webpack will bundle this for us. note, we need the extension b/c you can only ommit for js files
 
 const person = props => {
   return (
-    <div className="Person">
+    <div className={classes.Person}>
       <p onClick={props.click}>
         I'm {props.name} and I am {props.age} years old
       </p>
