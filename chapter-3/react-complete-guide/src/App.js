@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import Radium from "radium";
 
 class App extends Component {
   state = {
@@ -61,12 +60,7 @@ class App extends Component {
       border: "1px solid blue",
       boxShadow: "0 2px 2px grey",
       padding: "8px",
-      cursor: "pointer",
-      // with radium, we can add psuedo selectors - need to be wrapped in quotes
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black"
-      }
+      cursor: "pointer"
     };
 
     let persons = null;
@@ -89,11 +83,6 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "lightred",
-        color: "black"
-      };
     }
 
     // both classes for classlist
@@ -121,4 +110,4 @@ class App extends Component {
 }
 
 // Must wrap component exports in Radium if you want inline psuedo selectors
-export default Radium(App);
+export default App;

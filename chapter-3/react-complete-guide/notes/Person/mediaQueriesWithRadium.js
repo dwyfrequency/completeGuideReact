@@ -1,7 +1,14 @@
 import React from "react";
 import "./Person.css"; // webpack will bundle this for us. note, we need the extension b/c you can only ommit for js files
+import Radium from "radium";
 
 const person = props => {
+  const style = {
+    // if window is larger or equal to 500px, width will be 450
+    "@media (min-width: 500px)": {
+      width: "450px"
+    }
+  };
   return (
     <div className="Person" style={style}>
       <p onClick={props.click}>
@@ -13,4 +20,4 @@ const person = props => {
   );
 };
 
-export default person;
+export default Radium(person);
