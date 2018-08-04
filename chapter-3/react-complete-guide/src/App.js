@@ -54,17 +54,9 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      boxShadow: "0 2px 2px grey",
-      padding: "8px",
-      cursor: "pointer"
-    };
-
     let persons = null;
+    let btnClass = "";
+
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -84,6 +76,10 @@ class App extends Component {
           })}
         </div>
       );
+
+      // classes.Red will resolve to just a string created by the css loader which gives us a string with the valid css
+      // all classes even if they are defined on a special subselector, they are available on the classes object
+      btnClass = classes.Red;
     }
 
     // both classes for classlist
@@ -101,7 +97,7 @@ class App extends Component {
       <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={assignedClasses.join(" ")}>This is really working!</p>
-        <button style={style} onClick={this.togglePersonHandler}>
+        <button className={btnClass} onClick={this.togglePersonHandler}>
           Toggle Persons
         </button>
         {persons}
