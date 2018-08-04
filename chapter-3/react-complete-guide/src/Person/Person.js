@@ -1,5 +1,7 @@
 import React from "react";
-import classes from "./Person.css"; // webpack will bundle this for us. note, we need the extension b/c you can only ommit for js files
+/* we can think of the classes object as a string version of your css class. The name is adjust to be unique so you can be safe that in a given component
+that is the only place */
+import classes from "./Person.css"; // webpack will bundle this for us. note, we need the extension b/c you can only omit for js files
 
 const person = props => {
   return (
