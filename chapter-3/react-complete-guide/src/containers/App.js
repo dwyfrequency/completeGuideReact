@@ -4,6 +4,11 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    // only in the constructor can we access props without this
+    console.log("[App.js] Inside Constructor", props);
+  }
   state = {
     persons: [
       {
@@ -26,6 +31,13 @@ class App extends Component {
     showPersons: false
   };
 
+  componentWillMount = () => {
+    console.log("[App.js] Inside componentWillMount");
+  };
+
+  componentWillUnmount = () => {
+    console.log("[App.js] Inside componentWillUnmount");
+  };
   nameChangedHandler = (e, id) => {
     const person = { ...this.state.persons.find(p => p.id === id) };
 
