@@ -8,6 +8,7 @@ class Persons extends Component {
       <Person
         name={person.name}
         age={person.age}
+        key={person.id}
         click={() => this.props.click(person.id)}
         changed={e => this.props.changed(e, person.id)}
       />

@@ -35,9 +35,26 @@ class App extends Component {
     console.log("[App.js] Inside componentWillMount");
   };
 
+  componentDidMount = () => {
+    console.log("[App.js] Inside componentDidMount");
+  };
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    console.log("[App.js] Inside shouldComponentUpdate");
+    return (
+      nextState.persons !== this.state.persons ||
+      nextState.showPersons !== this.state.showPersons
+    );
+  };
+
   componentWillUnmount = () => {
     console.log("[App.js] Inside componentWillUnmount");
   };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("[App.js] Inside componentDidUpdate ");
+  };
+
   nameChangedHandler = (e, id) => {
     const person = { ...this.state.persons.find(p => p.id === id) };
 
@@ -76,6 +93,13 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+        <button
+          onClick={() => {
+            this.setState({});
+          }}
+        >
+          Show Persons
+        </button>
         <Cockpit
           // title is passed from index.js
           title={this.props.title}
