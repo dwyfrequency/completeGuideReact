@@ -39,6 +39,9 @@ class App extends PureComponent {
     console.log("[App.js] Inside componentDidMount");
   };
 
+  /* updating happens from top to bottom, components and child components update only when state or props change 
+  If we are making pure components, we can implement these on parent components that way we dont need to make each child pure.
+  The check will be performed on the top level */
   // shouldComponentUpdate = (nextProps, nextState) => {
   //   /*to let React know if a component’s output is not affected by the current change in state or props.
   //   The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.*/
