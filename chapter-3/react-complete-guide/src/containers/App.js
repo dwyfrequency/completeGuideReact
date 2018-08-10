@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     // only in the constructor can we access props without this
@@ -39,13 +39,15 @@ class App extends Component {
     console.log("[App.js] Inside componentDidMount");
   };
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    console.log("[App.js] Inside shouldComponentUpdate");
-    return (
-      nextState.persons !== this.state.persons ||
-      nextState.showPersons !== this.state.showPersons
-    );
-  };
+  // shouldComponentUpdate = (nextProps, nextState) => {
+  //   /*to let React know if a component’s output is not affected by the current change in state or props.
+  //   The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.*/
+  //   console.log("[App.js] Inside shouldComponentUpdate");
+  //   return (
+  //     nextState.persons !== this.state.persons ||
+  //     nextState.showPersons !== this.state.showPersons
+  //   );
+  // };
 
   componentWillUnmount = () => {
     console.log("[App.js] Inside componentWillUnmount");
@@ -95,7 +97,7 @@ class App extends Component {
       <div className={classes.App}>
         <button
           onClick={() => {
-            this.setState({});
+            this.setState({ showPersons: true });
           }}
         >
           Show Persons
