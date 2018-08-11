@@ -31,7 +31,8 @@ class App extends PureComponent {
       }
     ],
     otherState: "some other val",
-    showPersons: false
+    showPersons: false,
+    toggleClicked: 0
   };
 
   componentWillMount = () => {
@@ -83,7 +84,12 @@ class App extends PureComponent {
   };
 
   togglePersonHandler = () => {
-    this.setState({ showPersons: !this.state.showPersons });
+    // setState is async so you need to use the prevState which is immutable to update the values for the current state
+    // mutating the state is vest when we use the previous state
+    this.setState((prevState, props) => ({
+      showPersons: !prevState.showPersons,
+      toggleClicked: prevState.toggleClicked + 1
+    }));
   };
 
   render() {
