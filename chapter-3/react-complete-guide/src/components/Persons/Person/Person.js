@@ -6,11 +6,16 @@ import Aux from "../../../hoc/Aux";
 import withClass_V2 from "../../../hoc/withClass_V2";
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[Person.js] Inside Constructor", props);
+    this.inputElement = React.createRef();
+  }
   componentDidMount = () => {
     console.log("[Person.js] Inside componentDidMount");
     if (this.props.position === 0) {
       // this puts the focus on the first input
-      this.inputElement.focus();
+      this.inputElement.current.focus();
     }
   };
 
@@ -24,9 +29,7 @@ class Person extends Component {
         <p>{this.props.children}</p>
         <input
           // this ref - creates a new class property that can be used when render runs
-          ref={inp => {
-            this.inputElement = inp;
-          }}
+          ref={this.inputElement}
           type="text"
           onChange={this.props.changed}
           value={this.props.name}
