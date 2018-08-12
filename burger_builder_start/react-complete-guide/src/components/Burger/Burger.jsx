@@ -12,12 +12,20 @@ const burger = props => {
     VM920:1 (2) [undefined, undefined]
   }  
   then we map again and create an array of BurgerIngredients - key will be something like salad1 so it will be unique
-  actual ingredient is taken from the closure */
-  const transformedIngredients = Object.keys(props.ingredients).map(igKey => {
-    return [...Array(props.ingredients[igKey])].map((_, idx) => {
-      return <BurgerIngredient key={igKey + idx} type={igKey} />;
-    });
-  });
+  actual ingredient is taken from the closure 
+  last, we reduce (flatten) our array which will remove any empty arrays - when you concat an empty array it just ignores it  */
+  let transformedIngredients = Object.keys(props.ingredients)
+    .map(igKey => {
+      return [...Array(props.ingredients[igKey])].map((_, idx) => {
+        return <BurgerIngredient key={igKey + idx} type={igKey} />;
+      });
+    })
+    .reduce((arr, el) => {
+      return arr.concat(el);
+    }, []);
+  if (transformedIngredients === 0) {
+    transformedIngredients = <p>Please start adding ingredients!</p>;
+  }
   return (
     <div className={classes.Burger}>
       <BurgerIngredient type="bread-top" />
