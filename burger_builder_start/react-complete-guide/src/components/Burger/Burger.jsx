@@ -23,7 +23,8 @@ const burger = props => {
     .reduce((arr, el) => {
       return arr.concat(el);
     }, []);
-  if (transformedIngredients === 0) {
+  if (transformedIngredients.length === 0) {
+    // we dont need to update the BurgerIngredients component switch b/c it is never called in the array slot here. It is only called when there is a length greater than 0
     transformedIngredients = <p>Please start adding ingredients!</p>;
   }
   return (
