@@ -18,7 +18,8 @@ class BurgerBuilder extends Component {
       cheese: 0,
       meat: 0
     },
-    totalPrice: 4
+    totalPrice: 0,
+    purchasable: false
   };
 
   addIngredientHandler = type => {
@@ -33,6 +34,16 @@ class BurgerBuilder extends Component {
     const oldTotalCost = this.state.totalPrice;
     const newTotalCost = oldTotalCost + priceAddition;
     this.setState({ totalPrice: newTotalCost, ingredients: updateIngredients });
+    this.updatePurchaseState(updateIngredients);
+  };
+
+  updatePurchaseState = ingredients => {
+    // we have to pass in ingredients b/c when we tried to access state before directly, we were receiving old state
+    const sum = Object.keys(ingredients)
+      .map(igKey => ingredients[igKey])
+      .reduce((sum, el) => sum + el, 0);
+    console.log(sum, sum > 0);
+    this.setState({ purchasable: sum > 0 });
   };
 
   removeIngredientHandler = type => {
@@ -50,6 +61,7 @@ class BurgerBuilder extends Component {
     const oldTotalCost = this.state.totalPrice;
     const newTotalCost = oldTotalCost - priceReduction;
     this.setState({ totalPrice: newTotalCost, ingredients: updateIngredients });
+    this.updatePurchaseState(updateIngredients);
   };
 
   render() {
@@ -68,6 +80,7 @@ class BurgerBuilder extends Component {
           ingredientAdded={this.addIngredientHandler}
           ingredientRemoved={this.removeIngredientHandler}
           disabled={disableInfo}
+          purchasable={this.state.purchasable}
         />
       </Aux>
     );
