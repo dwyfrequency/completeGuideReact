@@ -1,7 +1,9 @@
 .Logo {
   background-color: white;
   padding: 8px;
-  height: 100%;
+  height: 80%;
+  /* change to bord-box so that the 80% height auto includes the padding */
+  box-sizing: border-box;
 }
 
 .Logo img {

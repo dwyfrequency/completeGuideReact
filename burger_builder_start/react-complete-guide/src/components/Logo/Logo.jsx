@@ -3,9 +3,10 @@ import React from "react";
 We then just provide our img tag with the imported module and webpack will give it the optimized image 
 */
 import burgerLogo from "../../assets/images/burger-logo.png";
+import classes from "./Logo.css";
 
 const logo = props => (
-  <div>
+  <div className={classes.Logo}>
     <img src={burgerLogo} alt="MyBurger" />
   </div>
 );
