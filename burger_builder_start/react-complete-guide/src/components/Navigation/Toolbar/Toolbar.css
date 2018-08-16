@@ -1,0 +1,20 @@
+.Toolbar {
+  /* fixed so it sits at the top when we scroll, top 0 and left 0 so it is at the top left */
+  height: 56px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #703b09;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  /* picked 90 b/c our backdrop is 100, so we want backdrop to cover over it  */
+  z-index: 90;
+}
+
+.Toolbar nav {
+  height: 100%;
+}
