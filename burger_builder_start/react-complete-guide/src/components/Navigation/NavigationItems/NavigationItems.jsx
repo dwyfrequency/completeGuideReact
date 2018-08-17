@@ -4,6 +4,7 @@ import NavigationItem from "./NavigationItem/NavigationItem.jsx";
 
 const navigationItems = props => (
   <ul className={classes.NavigationItems}>
+    {/* for boolean props like active, we can just pass active and it will resolve to true */}
     <NavigationItem link="/" active>
       Burger Builder
     </NavigationItem>
