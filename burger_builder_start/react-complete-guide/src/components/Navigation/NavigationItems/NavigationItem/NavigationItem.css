@@ -1,3 +1,4 @@
+/* Mobile first approach */
 .NavigationItem {
   margin: 10px 0;
   box-sizing: border-box;
@@ -19,6 +20,7 @@
   color: #40a4c8;
 }
 
+/* For Desktop Media Queries  */
 @media (min-width: 500px) {
   .NavigationItem {
     margin: 0;
