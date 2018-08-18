@@ -40,6 +40,7 @@ class BurgerIngredient extends Component {
   }
 }
 
+// to have propTypes, you need the import and the component needs to be stateful
 BurgerIngredient.propTypes = {
   type: PropTypes.string.isRequired
 };
