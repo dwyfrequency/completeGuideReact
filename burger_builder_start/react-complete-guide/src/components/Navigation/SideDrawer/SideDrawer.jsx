@@ -3,7 +3,7 @@ import Logo from "../../Logo/Logo.jsx";
 import NavigationItems from "../NavigationItems/NavigationItems.jsx";
 import classes from "./SideDrawer.css";
 import Backdrop from "../../UI/Backdrop/Backdrop.jsx";
-import Aux from "../../../hoc/Aux";
+import Aux from "../../../hoc/Aux/Aux";
 
 const sideDrawer = props => {
   // adding logic to move in or out the sidedrawer
