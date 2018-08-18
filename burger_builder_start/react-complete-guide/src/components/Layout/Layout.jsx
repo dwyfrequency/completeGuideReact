@@ -9,20 +9,25 @@ we have three options return an array, create a higher order component to wrap i
 
 class Layout extends Component {
   state = {
-    showSideDrawer: true
+    showSideDrawer: false
   };
 
-  SideDrawerClosedHandler = () => {
+  sideDrawerClosedHandler = () => {
     this.setState({ showSideDrawer: false });
+  };
+
+  sideDrawerToggleHandler = () => {
+    // need to use the function inside of setstate b/c of the async nature of setState
+    this.setState(prevState => ({ showSideDrawer: !prevState.showSideDrawer }));
   };
 
   render() {
     return (
       <Aux>
-        <Toolbar />
+        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
         <SideDrawer
           open={this.state.showSideDrawer}
-          closed={this.SideDrawerClosedHandler}
+          closed={this.sideDrawerClosedHandler}
         />
         <main className={classes.Content}>{this.props.children}</main>
       </Aux>

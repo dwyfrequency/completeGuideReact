@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Toolbar.css";
 import Logo from "../../Logo/Logo.jsx";
 import NavigationItems from "../NavigationItems/NavigationItems.jsx";
+import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle.jsx";
 
 /*to make the logo scale dynamically, we can do it in two ways:
 1. Add a prop to set it, then we'd do an inline style and assign an object
@@ -9,7 +10,7 @@ import NavigationItems from "../NavigationItems/NavigationItems.jsx";
 
 const toolbar = props => (
   <header className={classes.Toolbar}>
-    <div>MENU</div>
+    <DrawerToggle clicked={props.drawerToggleClicked} />
     <div className={classes.Logo}>
       <Logo />
     </div>
