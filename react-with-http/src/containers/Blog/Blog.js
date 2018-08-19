@@ -10,17 +10,27 @@ class Blog extends Component {
     posts: []
   };
 
+  randomAuthor = () => {
+    const writers = ["Tom", "Lisa", "Suz", "Jojo", "Sara"];
+    const idx = Math.floor(Math.random() * writers.length);
+    return writers[idx];
+  };
+
   componentDidMount = () => {
+    console.log(this.randomAuthor());
     axios.get("https://jsonplaceholder.typicode.com/posts").then(resp => {
-      // need to set state in the promise or we wont have access to it - b/c timing issue
-      this.setState({ posts: resp.data });
+      const posts = resp.data.slice(0, 4);
+      const updatedPosts = posts.map(post => {
+        return { ...post, author: this.randomAuthor() };
+      });
+      this.setState({ posts: updatedPosts });
       console.log(resp.data);
     });
   };
 
   render() {
     const posts = this.state.posts.map(post => {
-      return <Post key={post.id} title={post.title} />;
+      return <Post key={post.id} title={post.title} author={post.author} />;
     });
 
     return (
