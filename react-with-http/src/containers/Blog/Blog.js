@@ -8,7 +8,8 @@ import "./Blog.css";
 class Blog extends Component {
   state = {
     posts: [],
-    selectedPostId: null
+    selectedPostId: null,
+    error: false
   };
 
   randomAuthor = () => {
@@ -19,14 +20,19 @@ class Blog extends Component {
 
   componentDidMount = () => {
     console.log(this.randomAuthor());
-    axios.get("https://jsonplaceholder.typicode.com/posts").then(resp => {
-      const posts = resp.data.slice(0, 4);
-      const updatedPosts = posts.map(post => {
-        return { ...post, author: this.randomAuthor() };
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then(resp => {
+        // only display four posts - our own form of pagination
+        const posts = resp.data.slice(0, 4);
+        const updatedPosts = posts.map(post => {
+          return { ...post, author: this.randomAuthor() };
+        });
+        this.setState({ posts: updatedPosts });
+      })
+      .catch(err => {
+        this.setState({ error: true });
       });
-      this.setState({ posts: updatedPosts });
-      console.log(resp.data);
-    });
   };
 
   postSelectedHandler = id => {
@@ -35,16 +41,19 @@ class Blog extends Component {
   };
 
   render() {
-    const posts = this.state.posts.map(post => {
-      return (
-        <Post
-          key={post.id}
-          title={post.title}
-          author={post.author}
-          clicked={() => this.postSelectedHandler(post.id)}
-        />
-      );
-    });
+    let posts = <p style={{ textAlign: "center" }}>Something went wrong</p>;
+    if (this.state.error === false) {
+      posts = this.state.posts.map(post => {
+        return (
+          <Post
+            key={post.id}
+            title={post.title}
+            author={post.author}
+            clicked={() => this.postSelectedHandler(post.id)}
+          />
+        );
+      });
+    }
 
     return (
       <div>
