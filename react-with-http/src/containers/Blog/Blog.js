@@ -30,6 +30,7 @@ class Blog extends Component {
   };
 
   postSelectedHandler = id => {
+    // when a post is selected, our state changes. Our fullpost component is listening for the state change and rerenders when it does
     this.setState({ selectedPostId: id });
   };
 
