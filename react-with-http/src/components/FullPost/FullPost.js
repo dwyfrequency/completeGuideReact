@@ -8,12 +8,16 @@ class FullPost extends Component {
     loadedPost: null
   };
   componentDidUpdate = (prevProps, prevState) => {
+    // this creates an infinite loop - when we call setState, we will call componentDidUpdate again which will trigger another call without additional logic
+    // so we check that a post id is not the exact same post
     if (this.props.id) {
-      axios
-        .get(`https://jsonplaceholder.typicode.com/posts/${this.props.id}`)
-        .then(resp => {
-          this.setState({ loadedPost: resp.data });
-        });
+      if (prevProps.id !== this.props.id) {
+        axios
+          .get(`https://jsonplaceholder.typicode.com/posts/${this.props.id}`)
+          .then(resp => {
+            this.setState({ loadedPost: resp.data });
+          });
+      }
     }
   };
 
@@ -22,7 +26,7 @@ class FullPost extends Component {
     if (this.props.id) {
       // we need to do this check and the one below, b/c once we get the postId, our get request is triggered.
       // It takes time to receive it back so we dont want to try and render undefined data if there is a timing delay
-      let post = <p style={{ textAlign: "center" }}>Loading...!</p>;
+      post = <p style={{ textAlign: "center" }}>Loading...!</p>;
     }
     if (this.state.loadedPost) {
       post = (
