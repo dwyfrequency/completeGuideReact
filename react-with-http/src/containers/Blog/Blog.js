@@ -21,7 +21,7 @@ class Blog extends Component {
   componentDidMount = () => {
     console.log(this.randomAuthor());
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get("/posts")
       .then(resp => {
         // only display four posts - our own form of pagination
         const posts = resp.data.slice(0, 4);

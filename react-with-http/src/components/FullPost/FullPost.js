@@ -12,19 +12,15 @@ class FullPost extends Component {
     // so we check that a post id is not the exact same post
     if (this.props.id) {
       if (prevProps.id !== this.props.id) {
-        axios
-          .get(`https://jsonplaceholder.typicode.com/posts/${this.props.id}`)
-          .then(resp => {
-            this.setState({ loadedPost: resp.data });
-          });
+        axios.get(`/posts/${this.props.id}`).then(resp => {
+          this.setState({ loadedPost: resp.data });
+        });
       }
     }
   };
 
   deletePostHandler = () => {
-    axios
-      .delete(`https://jsonplaceholder.typicode.com/posts/${this.props.id}`)
-      .then(resp => console.log(resp));
+    axios.delete(`/posts/${this.props.id}`).then(resp => console.log(resp));
   };
 
   render() {
