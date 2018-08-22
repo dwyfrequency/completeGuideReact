@@ -160,4 +160,4 @@ class BurgerBuilder extends Component {
 }
 
 // by wrapping our burger builder in this function, we catch any errors in a higher order component
-export default withErrorHandler(BurgerBuilder);
+export default withErrorHandler(BurgerBuilder, axios);
