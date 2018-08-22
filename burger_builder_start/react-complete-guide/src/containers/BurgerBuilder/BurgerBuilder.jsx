@@ -5,6 +5,7 @@ import BuildControls from "../../components/Burger/BuildControls/BuildControls.j
 import Modal from "../../components/UI/Modal/Modal.jsx";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary.jsx";
 import Spinner from "../../components/UI/Spinner/Spinner.jsx";
+import withErrorHandler from "../../hoc/WithErrorHandler/withErrorHandler.jsx";
 import axios from "../../axios-orders";
 
 const INGREDIENT_PRICES = {
@@ -158,4 +159,5 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder;
+// by wrapping our burger builder in this function, we catch any errors in a higher order component
+export default withErrorHandler(BurgerBuilder);
