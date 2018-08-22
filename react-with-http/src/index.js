@@ -27,8 +27,8 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use(
-  request => {
-    return request;
+  response => {
+    return response;
   },
   error => {
     return Promise.reject(error);
