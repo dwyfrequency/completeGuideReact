@@ -7,7 +7,10 @@ class Modal extends Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     // show tells us if they are in purchasing mode so we are not rerendering if they are not in that mode
     // now we save on performance by not unnecessarily rerendering the dom
-    return nextProps.show !== this.props.show;
+    return (
+      nextProps.show !== this.props.show ||
+      nextProps.children !== this.props.children
+    );
   };
 
   componentWillUpdate = (nextProps, nextState) => {
