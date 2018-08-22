@@ -8,6 +8,7 @@ class Modal extends Component {
     // show tells us if they are in purchasing mode so we are not rerendering if they are not in that mode
     // now we save on performance by not unnecessarily rerendering the dom
     return (
+      // need to add the children logic b/c when loading Modal receives children for the spinner and the props don't change
       nextProps.show !== this.props.show ||
       nextProps.children !== this.props.children
     );

@@ -77,16 +77,25 @@ class BurgerBuilder extends Component {
       deliveryMethod: "fastest"
     };
 
-    // for firebase, you have any nodename of your choice + .json
+    // added setTimeout so we could see the spinner longer - firebase so dang fast
     setTimeout(() => {
+      // for firebase, you have any nodename of your choice + .json
       axios
         .post("/orders.json", order)
-        .then(resp => this.setState({ loading: false, purchasing: false }))
+        .then(resp =>
+          this.setState({
+            loading: false,
+            purchasing: false
+          })
+        )
         .catch(err => {
-          this.setState({ loading: false, purchasing: false });
+          this.setState({
+            loading: false,
+            purchasing: false
+          });
           console.log(err);
         });
-    }, 1000);
+    }, 2000);
   };
 
   removeIngredientHandler = type => {
