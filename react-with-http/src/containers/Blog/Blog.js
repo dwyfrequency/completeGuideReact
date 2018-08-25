@@ -23,6 +23,8 @@ class Blog extends Component {
               </li>
               <li>
                 <Link
+                  // when using to, it always uses and absolute path. ie it adds /new-post to your domain
+                  // to get around this use ${this.props.match.url}/whateverEndpoint
                   to={{
                     pathname: "/new-post",
                     // hash allows us to jump to a part of our page
