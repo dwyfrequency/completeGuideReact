@@ -3,7 +3,8 @@ import React, { Component } from "react";
 // now axios points to our defined instance
 // import axios from "../../axios";
 // We use the Link component instead of the a tag so our spa doesnt rerender
-import { Route, Link } from "react-router-dom";
+// To do link specific styling with active, we need NavLink
+import { Route, NavLink, Link } from "react-router-dom";
 import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
@@ -19,22 +20,32 @@ class Blog extends Component {
                 {/* Link allows us to prevent the default for an a tag of going to a new page
                  the to attribute  replaces our href attribute in an a tag 
                  We can config dynamic content by passing 'to' a js obj*/}
-                <Link to="/">Home</Link>
+                {/* need to add exact so that the router tells it this must be the full path - to receive the active css class 
+                we can also override the className given
+                use activeStyle to do some inline styling */}
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName="active"
+                  activeStyle={{
+                    color: "#fa923f",
+                    textDecoration: "underline"
+                  }}
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <Link
-                  // when using to, it always uses and absolute path. ie it adds /new-post to your domain
+                <NavLink // when using to, it always uses and absolute path. ie it adds /new-post to your domain
                   // to get around this use ${this.props.match.url}/whateverEndpoint
                   to={{
-                    pathname: "/new-post",
-                    // hash allows us to jump to a part of our page
-                    hash: "#submit",
-                    // search: allows us to setup query params
+                    pathname: "/new-post", // hash allows us to jump to a part of our page
+                    hash: "#submit", // search: allows us to setup query params
                     search: "?quick-submit=true"
                   }}
                 >
                   New Post
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>
