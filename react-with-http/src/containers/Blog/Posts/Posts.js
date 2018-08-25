@@ -39,6 +39,9 @@ class Posts extends Component {
   postSelectedHandler = id => {
     // when a post is selected, our state changes. Our fullpost component is listening for the state change and rerenders when it does
     // this.setState({ selectedPostId: id });
+
+    // we are using history b/c we can now push a new page onto the stack of the navigation. think the forward and back buttons in the browser
+    // allows for programmatic navigation
     this.props.history.push({ pathname: `/${id}` });
   };
 
