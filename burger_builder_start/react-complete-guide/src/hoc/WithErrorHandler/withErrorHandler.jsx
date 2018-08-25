@@ -11,17 +11,24 @@ const withErrorHandler = (WrappedComponent, axios) => {
     };
     componentWillMount = () => {
       // needed to use cwm to interset requests and show any errors
-      axios.interceptors.response.use(req => {
+      this.reqInteceptor = axios.interceptors.response.use(req => {
         this.setState({ error: null });
         return req;
       });
-      axios.interceptors.response.use(
+      this.respInteceptor = axios.interceptors.request.use(
         res => res,
         err => {
           this.setState({ error: err });
         }
       );
     };
+
+    componentWillUnmount() {
+      // remove interceptors
+      console.log("Will Unmount", this.reqInteceptor, this.respInteceptor);
+      axios.interceptors.request.eject(this.reqInteceptor);
+      axios.interceptors.response.eject(this.respInteceptor);
+    }
 
     errorConfirmedHandler = () => {
       this.setState({ error: null });
