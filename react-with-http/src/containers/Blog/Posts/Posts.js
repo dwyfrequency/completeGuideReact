@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "../../../axios.js";
 import Post from "../../../components/Post/Post";
 import "./Posts.css";
+import { Link } from "react-router-dom";
 
 class Posts extends Component {
   state = {
@@ -37,7 +38,8 @@ class Posts extends Component {
 
   postSelectedHandler = id => {
     // when a post is selected, our state changes. Our fullpost component is listening for the state change and rerenders when it does
-    this.setState({ selectedPostId: id });
+    // this.setState({ selectedPostId: id });
+    this.props.history.push({ pathname: `/${id}` });
   };
 
   render() {
@@ -45,12 +47,15 @@ class Posts extends Component {
     if (this.state.error === false) {
       posts = this.state.posts.map(post => {
         return (
+          // key must be in the outer most element in your loop
+          // <Link to={`/${post.id}`} key={post.id}>
           <Post
-            key={post.id}
             title={post.title}
             author={post.author}
             clicked={() => this.postSelectedHandler(post.id)}
+            key={post.id}
           />
+          // </Link>
         );
       });
     }

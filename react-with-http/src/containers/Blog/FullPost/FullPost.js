@@ -7,15 +7,16 @@ class FullPost extends Component {
   state = {
     loadedPost: null
   };
-  componentDidUpdate = (prevProps, prevState) => {
+
+  componentDidMount = () => {
+    console.log(this.props);
     // this creates an infinite loop - when we call setState, we will call componentDidUpdate again which will trigger another call without additional logic
     // so we check that a post id is not the exact same post
-    if (this.props.id) {
-      if (prevProps.id !== this.props.id) {
-        axios.get(`/posts/${this.props.id}`).then(resp => {
-          this.setState({ loadedPost: resp.data });
-        });
-      }
+    let id = this.props.match.params.id;
+    if (id) {
+      axios.get(`/posts/${id}`).then(resp => {
+        this.setState({ loadedPost: resp.data });
+      });
     }
   };
 

@@ -4,10 +4,12 @@ import React, { Component } from "react";
 // import axios from "../../axios";
 // We use the Link component instead of the a tag so our spa doesnt rerender
 // To do link specific styling with active, we need NavLink
-import { Route, NavLink, Link } from "react-router-dom";
+// Switch: will tell react router to only load one route, the first one you find that matches a given route
+import { Route, NavLink, Switch } from "react-router-dom";
 import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
+import FullPost from "./FullPost/FullPost";
 
 class Blog extends Component {
   render() {
@@ -60,8 +62,13 @@ class Blog extends Component {
         it needs to be a reference to the function or class that we want to use 
         With the below, we can see all of the posts render for the home path
         - note, we are not passing a string, we are passing the actual imported function or component*/}
-        <Route path="/" exact component={Posts} />
-        <Route path="/new-post" component={NewPost} />
+        <Switch>
+          <Route path="/" exact component={Posts} />
+          <Route path="/new-post" exact component={NewPost} />
+          {/* passing variable parameter to the path, this will be replaced dynamically 
+        must put the dyanmics at the bottom or else new post may have been recog'd as an id*/}
+          <Route path="/:id" exact component={FullPost} />
+        </Switch>
       </div>
     );
   }
