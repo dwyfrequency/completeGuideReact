@@ -16,9 +16,9 @@ class Posts extends Component {
     return writers[idx];
   };
 
+  // executed each time we change the page
   componentDidMount = () => {
     console.log(this.props);
-    console.log(this.randomAuthor());
     axios
       .get("/posts")
       .then(resp => {
