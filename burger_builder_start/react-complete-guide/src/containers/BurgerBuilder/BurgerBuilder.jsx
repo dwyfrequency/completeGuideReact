@@ -7,7 +7,6 @@ import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary.jsx"
 import Spinner from "../../components/UI/Spinner/Spinner.jsx";
 import withErrorHandler from "../../hoc/WithErrorHandler/withErrorHandler.jsx";
 import axios from "../../axios-orders";
-import aux from "../../hoc/Aux/Aux";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
