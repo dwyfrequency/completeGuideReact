@@ -17,6 +17,7 @@ class Posts extends Component {
   };
 
   componentDidMount = () => {
+    console.log(this.props);
     console.log(this.randomAuthor());
     axios
       .get("/posts")

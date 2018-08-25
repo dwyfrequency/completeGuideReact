@@ -2,7 +2,8 @@ import React, { Component } from "react";
 // import axios from "axios";
 // now axios points to our defined instance
 // import axios from "../../axios";
-import { Route } from "react-router-dom";
+// We use the Link component instead of the a tag so our spa doesnt rerender
+import { Route, Link } from "react-router-dom";
 import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
@@ -15,10 +16,23 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <a href="/">Home</a>
+                {/* Link allows us to prevent the default for an a tag of going to a new page
+                 the to attribute  replaces our href attribute in an a tag 
+                 We can config dynamic content by passing 'to' a js obj*/}
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/new-post">New Post</a>
+                <Link
+                  to={{
+                    pathname: "/new-post",
+                    // hash allows us to jump to a part of our page
+                    hash: "#submit",
+                    // search: allows us to setup query params
+                    search: "?quick-submit=true"
+                  }}
+                >
+                  New Post
+                </Link>
               </li>
             </ul>
           </nav>
