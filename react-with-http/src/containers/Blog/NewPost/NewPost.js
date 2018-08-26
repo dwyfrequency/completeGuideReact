@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./NewPost.css";
+import { Redirect } from "react-router-dom";
 
 class NewPost extends Component {
   state = {
     title: "",
     content: "",
-    author: "Max"
+    author: "Max",
+    submitted: false
   };
 
   componentDidMount = () => {
@@ -22,12 +24,20 @@ class NewPost extends Component {
     // axios will stringify this for us
     axios.post("/posts", data).then(resp => {
       console.log(resp);
+      this.setState({ submitted: true });
     });
   };
 
   render() {
+    // if redirect is populated then send us to posts otherwise render the new post form
+    let redirect = null;
+    if (this.state.submitted) {
+      redirect = <Redirect to="/posts" />;
+    }
     return (
       <div className="NewPost">
+        {/* If we redirect outside of a switch statement, we must always specify a to location  */}
+        {redirect}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input

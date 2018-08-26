@@ -5,7 +5,8 @@ import React, { Component } from "react";
 // We use the Link component instead of the a tag so our spa doesnt rerender
 // To do link specific styling with active, we need NavLink
 // Switch: will tell react router to only load one route, the first one you find that matches a given route
-import { Route, NavLink, Switch } from "react-router-dom";
+// Redirect: you can add it to a switch and specify from/to route
+import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
@@ -67,6 +68,9 @@ class Blog extends Component {
           {/* needed to switch the order of the routes once we removed exact from the "/" posts path */}
           <Route path="/new-post" exact component={NewPost} />
           <Route path="/posts" component={Posts} />
+          {/* Redirect sends our request from the "/" to "/posts"*/}
+          <Redirect from="/" to="/posts" />
+          {/* <Route path="/" component={Posts} /> */}
           {/* passing variable parameter to the path, this will be replaced dynamically 
         must put the dyanmics at the bottom or else new post may have been recog'd as an id*/}
           {/* <Route path="/:id" exact component={FullPost} /> */}
