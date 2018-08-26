@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "../../../axios.js";
 import Post from "../../../components/Post/Post";
+import FullPost from "../FullPost/FullPost";
 import "./Posts.css";
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 class Posts extends Component {
   state = {
@@ -19,7 +20,7 @@ class Posts extends Component {
 
   // executed each time we change the page
   componentDidMount = () => {
-    console.log(this.props);
+    // console.log(this.props);
     axios
       .get("/posts")
       .then(resp => {
@@ -42,7 +43,7 @@ class Posts extends Component {
 
     // we are using history b/c we can now push a new page onto the stack of the navigation. think the forward and back buttons in the browser
     // allows for programmatic navigation
-    this.props.history.push({ pathname: `/${id}` });
+    this.props.history.push({ pathname: `/posts/${id}` });
   };
 
   render() {
@@ -62,7 +63,12 @@ class Posts extends Component {
         );
       });
     }
-    return <section className="Posts">{posts}</section>;
+    return (
+      <div>
+        <section className="Posts">{posts}</section>
+        <Route path="/posts/:id" exact component={FullPost} />
+      </div>
+    );
   }
 }
 

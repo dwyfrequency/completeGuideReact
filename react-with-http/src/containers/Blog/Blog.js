@@ -9,7 +9,7 @@ import { Route, NavLink, Switch } from "react-router-dom";
 import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
-import FullPost from "./FullPost/FullPost";
+// import FullPost from "./FullPost/FullPost";
 
 class Blog extends Component {
   render() {
@@ -26,7 +26,7 @@ class Blog extends Component {
                 we can also override the className given
                 use activeStyle to do some inline styling */}
                 <NavLink
-                  to="/"
+                  to="/posts/"
                   exact
                   activeClassName="active"
                   activeStyle={{
@@ -34,17 +34,18 @@ class Blog extends Component {
                     textDecoration: "underline"
                   }}
                 >
-                  Home
+                  Posts
                 </NavLink>
               </li>
               <li>
-                <NavLink // when using to, it always uses and absolute path. ie it adds /new-post to your domain
-                  // to get around this use ${this.props.match.url}/whateverEndpoint
-                  to={{
-                    pathname: "/new-post", // hash allows us to jump to a part of our page
-                    hash: "#submit", // search: allows us to setup query params
-                    search: "?quick-submit=true"
-                  }}
+                <NavLink
+                  to={
+                    {
+                      pathname: "/new-post",
+                      hash: "#submit",
+                      search: "?quick-submit=true"
+                    } // to get around this use ${this.props.match.url}/whateverEndpoint // when using to, it always uses and absolute path. ie it adds /new-post to your domain // hash allows us to jump to a part of our page // search: allows us to setup query params
+                  }
                 >
                   New Post
                 </NavLink>
@@ -63,11 +64,12 @@ class Blog extends Component {
         With the below, we can see all of the posts render for the home path
         - note, we are not passing a string, we are passing the actual imported function or component*/}
         <Switch>
-          <Route path="/" exact component={Posts} />
+          {/* needed to switch the order of the routes once we removed exact from the "/" posts path */}
           <Route path="/new-post" exact component={NewPost} />
+          <Route path="/posts" component={Posts} />
           {/* passing variable parameter to the path, this will be replaced dynamically 
         must put the dyanmics at the bottom or else new post may have been recog'd as an id*/}
-          <Route path="/:id" exact component={FullPost} />
+          {/* <Route path="/:id" exact component={FullPost} /> */}
         </Switch>
       </div>
     );
