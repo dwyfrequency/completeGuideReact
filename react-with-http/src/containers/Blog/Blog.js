@@ -14,7 +14,7 @@ import NewPost from "./NewPost/NewPost";
 
 class Blog extends Component {
   state = {
-    auth: false
+    auth: true
   };
   render() {
     return (
@@ -74,8 +74,10 @@ class Blog extends Component {
             <Route path="/new-post" exact component={NewPost} />
           ) : null}
           <Route path="/posts" component={Posts} />
+          {/* this will render if there are any unknown routes called, we commented out redirect so we wouldnt get redirected to an actual page. This will render when we get a false for auth */}
+          <Route render={() => <h1>Not Found</h1>} />
           {/* Redirect sends our request from the "/" to "/posts"*/}
-          <Redirect from="/" to="/posts" />
+          {/* <Redirect from="/" to="/posts" /> */}
           {/* <Route path="/" component={Posts} /> */}
           {/* passing variable parameter to the path, this will be replaced dynamically 
         must put the dyanmics at the bottom or else new post may have been recog'd as an id*/}

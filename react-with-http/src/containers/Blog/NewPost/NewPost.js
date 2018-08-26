@@ -13,6 +13,7 @@ class NewPost extends Component {
 
   componentDidMount = () => {
     // could do something like, if unauth => this.props.history.replace('/posts');
+    // if a route isnt rendered then you cant reach it
     console.log(this.props);
   };
 
