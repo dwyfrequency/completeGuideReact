@@ -24,7 +24,12 @@ class NewPost extends Component {
     // axios will stringify this for us
     axios.post("/posts", data).then(resp => {
       console.log(resp);
-      this.setState({ submitted: true });
+      /* Redirect replaces the current page so if we click the back button, you can't go back to the last page. You can use replace to have the same behavior
+      if you use push instead of using the Redirect component - you can go back */
+      this.props.history.push("/posts");
+      // this.props.history.replace("/posts");
+
+      // this.setState({ submitted: true });
     });
   };
 
