@@ -20,7 +20,6 @@ class Posts extends Component {
 
   // executed each time we change the page
   componentDidMount = () => {
-    // console.log(this.props);
     axios
       .get("/posts")
       .then(resp => {
@@ -66,9 +65,14 @@ class Posts extends Component {
     return (
       <div>
         <section className="Posts">{posts}</section>
-        {/* this.props.match.url will resolve to the url responsible for loading the Posts component 
+        {/* Below, we are creating a nested route. 
+        this.props.match.url will resolve to the url responsible for loading the Posts component 
         ie we are dynamically adding /posts/*/}
-        <Route path={`${this.props.match.url}/id`} exact component={FullPost} />
+        <Route
+          path={`${this.props.match.url}/:id`}
+          exact
+          component={FullPost}
+        />
       </div>
     );
   }
