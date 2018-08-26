@@ -9,8 +9,16 @@ import React, { Component } from "react";
 import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 import "./Blog.css";
 import Posts from "./Posts/Posts";
-import NewPost from "./NewPost/NewPost";
+import asyncComponent from "../../hoc/asyncComponent";
+// import NewPost from "./NewPost/NewPost";
 // import FullPost from "./FullPost/FullPost";
+/*whenever you do an import from, you inform webpack about the dependency - the bundler includes the resource in the global */
+/* Lazy loading: defer initialization of an object until the point at which it is needed */
+
+const AsyncNewPost = asyncComponent(() => {
+  // dyanmic import only, gets called when the constant gets used somewhere; ie webpack loads it only when needed ipso facto lazy loading
+  return import("./NewPost/NewPost");
+});
 
 class Blog extends Component {
   state = {
@@ -71,7 +79,7 @@ class Blog extends Component {
           {/* needed to switch the order of the routes once we removed exact from the "/" posts path */}
           {/* if this auth resolves to false, then the redirect kicks in and we go back to posts */}
           {this.state.auth ? (
-            <Route path="/new-post" exact component={NewPost} />
+            <Route path="/new-post" exact component={AsyncNewPost} />
           ) : null}
           <Route path="/posts" component={Posts} />
           {/* this will render if there are any unknown routes called, we commented out redirect so we wouldnt get redirected to an actual page. This will render when we get a false for auth */}
