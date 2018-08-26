@@ -13,6 +13,9 @@ import NewPost from "./NewPost/NewPost";
 // import FullPost from "./FullPost/FullPost";
 
 class Blog extends Component {
+  state = {
+    auth: false
+  };
   render() {
     return (
       <div className="Blog">
@@ -66,7 +69,10 @@ class Blog extends Component {
         - note, we are not passing a string, we are passing the actual imported function or component*/}
         <Switch>
           {/* needed to switch the order of the routes once we removed exact from the "/" posts path */}
-          <Route path="/new-post" exact component={NewPost} />
+          {/* if this auth resolves to false, then the redirect kicks in and we go back to posts */}
+          {this.state.auth ? (
+            <Route path="/new-post" exact component={NewPost} />
+          ) : null}
           <Route path="/posts" component={Posts} />
           {/* Redirect sends our request from the "/" to "/posts"*/}
           <Redirect from="/" to="/posts" />
