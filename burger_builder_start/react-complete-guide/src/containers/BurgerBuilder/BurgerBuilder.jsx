@@ -66,41 +66,41 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      // for a real app, you should calc price on the server so user cannot manipulate it
-      price: this.state.totalPrice,
-      customer: {
-        name: "Max Pain",
-        address: {
-          street: "23 Test Ave.",
-          zipCode: "19009",
-          country: "Canada"
-        },
-        email: "test@me.co"
-      },
-      deliveryMethod: "fastest"
-    };
-    // added setTimeout so we could see the spinner longer - firebase so dang fast
-    setTimeout(() => {
-      // for firebase, you have any nodename of your choice + .json
-      axios
-        .post("/orders", order)
-        .then(resp =>
-          this.setState({
-            loading: false,
-            purchasing: false
-          })
-        )
-        .catch(err => {
-          this.setState({
-            loading: false,
-            purchasing: false
-          });
-          console.log(err);
-        });
-    }, 2000);
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   // for a real app, you should calc price on the server so user cannot manipulate it
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: "Max Pain",
+    //     address: {
+    //       street: "23 Test Ave.",
+    //       zipCode: "19009",
+    //       country: "Canada"
+    //     },
+    //     email: "test@me.co"
+    //   },
+    //   deliveryMethod: "fastest"
+    // };
+    // // added setTimeout so we could see the spinner longer - firebase so dang fast
+    // setTimeout(() => {
+    //   // for firebase, you have any nodename of your choice + .json
+    //   axios
+    //     .post("/orders", order)
+    //     .then(resp =>
+    //       this.setState({
+    //         loading: false,
+    //         purchasing: false
+    //       })
+    //     )
+    //     .catch(err => {
+    //       this.setState({
+    //         loading: false,
+    //         purchasing: false
+    //       });
+    //       console.log(err);
+    //     });
+    // }, 2000);
   };
 
   removeIngredientHandler = type => {

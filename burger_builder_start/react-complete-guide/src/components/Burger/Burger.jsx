@@ -3,6 +3,7 @@ import BurgerIngredient from "./BurgerIngredients/BurgerIngredients.jsx";
 import classes from "./Burger.css";
 
 const burger = props => {
+  console.log(props);
   /* get an array of all of the ingredient keys, map over the array creating an array  of the length of the specific ingredient;
   take the resulting array and spread it into a new array (necessary for odd reasons) {
     console.log(Array(2))
