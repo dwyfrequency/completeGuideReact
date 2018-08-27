@@ -45,6 +45,7 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount = () => {
+    console.log(this.props);
     // cdm - invoked after the initial rendering
     axios
       .get("https://react-my-burger-jd.firebaseio.com/ingredients.json")
@@ -81,7 +82,6 @@ class BurgerBuilder extends Component {
       },
       deliveryMethod: "fastest"
     };
-
     // added setTimeout so we could see the spinner longer - firebase so dang fast
     setTimeout(() => {
       // for firebase, you have any nodename of your choice + .json
