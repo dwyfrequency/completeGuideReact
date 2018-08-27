@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary.jsx";
+/*NOTE - you only need to install react-router-dom, react-router will be install as a dependency with react-router-dom*/
 
 class Checkout extends Component {
   state = {
