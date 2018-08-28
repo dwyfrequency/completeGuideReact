@@ -13,6 +13,12 @@ class Checkout extends Component {
     }
   };
 
+  checkoutCancelledHandler = () => {
+    this.props.history.goBack();
+  };
+
+  checkoutContinuedHandler = () => {};
+
   render() {
     // cancel btn, continue btn, show summary, load contact form
     return (
